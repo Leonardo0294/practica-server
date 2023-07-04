@@ -18,6 +18,8 @@ app.use(express.json());
 app.set("views", path.join(__dirname, "views")); // Corrección: Se corrige la sintaxis del método 'join'
 app.set("view engine", "ejs");
 
+app.use(express.static('public'));
+
 // Routes
 app.use("/", require("./routes/reserva.routes"));
 

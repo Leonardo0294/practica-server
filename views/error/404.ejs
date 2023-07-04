@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+    <div class="container">
+
+        <div class="row mt-5">
+            <h1 class="text-center border-botton">ERROR 404</h1>
+            <p class="text-center border-botton">No se encontró la ruta ingresada.</p>
+            <p class="text-center border-botton">Redireccionando a la página de inicio.</p>
+
+        </div>
+    </div>
+    <script>
+        (
+            () => setTimeout(() => {
+                window.location.href = 'http://localhost:4000/';
+            }, 3000)
+        )();
+    </script>
+
+    <%- include('../partials/footer') %>
