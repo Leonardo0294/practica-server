@@ -1,20 +1,32 @@
 // Imports
-const cors = require('cors');
-const express = require('express');
-
-const path = require('path');
-
+const cors = require("cors");
+const helmet = require("helmet"); // Corrección: Se importa el paquete 'helmet' en lugar de 'cors'
+const morgan = require("morgan"); // Corrección: Se importa el paquete 'morgan' en lugar de 'cors'
+const express = require("express");
+require("dotenv").config();
+const path = require("path");
+const port = process.env.PORT || 3000;
 const app = express();
 
 // Middlewares
-// TODO: Implementar middlewares
+app.use(cors());
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+// Configuración del motor de plantillas
+app.set("views", path.join(__dirname, "views")); // Corrección: Se corrige la sintaxis del método 'join'
+app.set("view engine", "ejs");
 
 // Routes
-app.use('/api', require('./routes/reserva.routes'));
+app.use("/", require("./routes/reserva.routes"));
 
-// TODO: Si la petición no coincide con ninguna de las rutas declaradas, mostrar error 404
+// Manejo de error 404
+app.get("*", function (req, res) {
+  res.status(404).send("Error 404: No se ha encontrado la ruta indicada");
+});
 
 // Starting the server
-app.listen(45635, () => console.log('Server on port xxxx'));
+app.listen(port, () => {
+  console.log(`Server en puerto ${port}`);
+});
