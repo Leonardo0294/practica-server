@@ -1,7 +1,15 @@
-// TODO: Importar el modelo y controladores de reservas, luego vincular rutas con controladores
+//Importar el modelo y controladores de reservas, luego vincular rutas con controladores
 
-const router = require('express').Router();
-
+const router = require("express").Router();
+const {
+  getReservas,
+  createReservas,
+  updateReservas,
+  deleteReservas,
+  renderReservas,
+  renderFormularioReservas,
+  renderEditarReservas,
+} = require("../controllers/reserva.controllers");
 
 // ==========================================
 //         Rutas para renderizar vistas
@@ -9,25 +17,28 @@ const router = require('express').Router();
 
 // Obtener todas las reservas
 
+
+
+router.get("/", renderReservas);
 // Formulario para crear una reserva
-
-// Formulario para actualizar una reserva
-
+router.get("/crear-reserva", renderFormularioReservas);
+// Formular                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     io para actualizar una reserva
+router.get("/actualizar-reserva", renderEditarReservas);
 // ==========================================
 //         Rutas para CRUD de reservas
 // ==========================================
 
 // Obtener todas las reservas
-router.get('/api/',);
- 
-// Crear una reserva
-router.post('/api/',);
- 
-// Actualizar una reserva
-router.put('/api/:id',);
- 
-// Eliminar una reserva de forma lógica
-router.delete('/api/:id',);
 
- 
- module.exports = router;
+router.get("/api/", getReservas);
+
+// Crear una reserva
+router.post("/api/", createReservas);
+
+// Actualizar una reserva
+router.put("/api/:id", updateReservas);
+
+// Eliminar una reserva de forma lógica
+router.delete("/api/:id", deleteReservas);
+
+module.exports = router;
